@@ -1,0 +1,36 @@
+package Barchart;
+
+import java.util.*;
+
+public class BarChart //class main
+{ public static void BarChart(int[] store){ //method Barchart
+System.out.println("=================Bar chart==================");
+  
+       for(int i=0;i<store.length;i++){ //for loop
+       System.out.print("Store "+(i+1)+" sale ");
+       for(int j=0;j<store[i]/100;j++)
+       System.out.print("*");
+       System.out.println();
+       }
+}
+   public static void main(String[] args){ //method main
+   Scanner s=new Scanner(System.in);
+       int[] store=new int[5]; // store array of length 5
+       int sale;
+       System.out.println("Enter the sale amount of 5 stores");
+       for(int i=0;i<store.length;i++) //Input sales amount
+       {
+       sale=s.nextInt();
+       if(sale<0)
+       {
+       i--;
+       System.out.println("I Said Enter A Positive");
+       continue;
+       }
+       store[i]=sale;
+       }
+      
+       BarChart(store); //call method BarChart
+      
+   }
+}
