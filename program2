@@ -1,0 +1,171 @@
+package square;
+
+import java.util.Arrays;
+
+import java.util.Scanner;
+
+public class MagicSquare {
+
+public static void main(String[] args) {
+
+int size;
+
+//Scanner Object is used to get the inputs from the user.
+
+Scanner keyboard = new Scanner(System.in);
+
+System.out.println("Enter the size of the square");
+
+size = keyboard.nextInt();
+
+System.out.println("Enter the numbers in each row seperated by space");
+
+while (true) {
+
+int[][] square = new int[size][size];
+
+//here This Nested loop will take the user given values and fill the two-dimensional array
+
+for (int row = 0; row < size; row++) {
+
+for (int col = 0; col < size; col++) {
+
+square[row][col] = keyboard.nextInt();
+
+}
+
+}
+
+System.out.println();
+
+for(int i=0;i<size;i++)
+
+{
+
+System.out.print("|");
+
+for(int j=0;j<size;j++)
+
+{
+
+System.out.print(square[i][j]+" ");
+
+}
+
+System.out.print("|");
+
+System.out.println();
+
+}
+
+//Calling the method to check the matrix is a magic square or not.
+
+boolean bool = isMagic(square);
+
+if (bool) {
+
+System.out.println("Magic Square ");
+
+} else {
+
+System.out.println("Not a Magic Square");
+
+}
+
+}
+
+}
+
+// Method code which contains logic which checks whether the matrix is a magic square or not.
+
+private static boolean isMagic(int[][] square) {
+
+int order = square.length;
+
+int[] sumRow = new int[order];
+
+int[] sumCol = new int[order];
+
+int[] sumDiag = new int[2];
+
+Arrays.fill(sumRow, 0);
+
+Arrays.fill(sumCol, 0);
+
+Arrays.fill(sumDiag, 0);
+
+//calculating the Sum of Each row
+
+for (int row = 0; row < order; row++) {
+
+for (int col = 0; col < order; col++) {
+
+sumRow[row] += square[row][col];
+
+}
+
+  
+
+}
+
+//calculating the Sum of Each column
+
+for (int col = 0; col < order; col++) {
+
+for (int row = 0; row < order; row++) {
+
+sumCol[col] += square[row][col];
+
+}
+
+  
+
+}
+
+//calculating the Sum of Diagonal 1
+
+for (int row = 0; row < order; row++) {
+
+sumDiag[0] += square[row][row];
+
+}
+
+  
+
+//calculating the Sum of Diagonal 2
+
+for (int row = 0; row < order; row++) {
+
+sumDiag[1] += square[row][order - 1 - row];
+
+}
+
+  
+
+boolean bool = true;
+
+int sum = sumRow[0];
+
+for (int i = 1; i < order; i++) {
+
+bool = bool && (sum == sumRow[i]);
+
+}
+
+for (int i = 0; i < order; i++) {
+
+bool = bool && (sum == sumCol[i]);
+
+}
+
+for (int i = 0; i < 2; i++) {
+
+bool = bool && (sum == sumDiag[i]);
+
+}
+
+return bool;
+
+}
+
+}
